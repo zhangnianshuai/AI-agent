@@ -1,0 +1,553 @@
+/* ═══════════════════════════════════════════════════════════
+   Smart Interview Platform — Blue-White Gradient Design System
+   Vue 3 + Element Plus | Clean Blue Primary | Flat & Modern
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap');
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Light Mode
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* ── Primary Palette (Clean Blue) ── */
+  --color-primary: #3B82F6;
+  --color-primary-light: #60A5FA;
+  --color-primary-dark: #2563EB;
+  --color-primary-bg: rgba(59, 130, 246, 0.06);
+  --color-primary-border: rgba(59, 130, 246, 0.12);
+
+  /* ── Semantic Colors ── */
+  --color-success: #22C55E;
+  --color-success-bg: rgba(34, 197, 94, 0.08);
+  --color-warning: #F59E0B;
+  --color-warning-bg: rgba(245, 158, 11, 0.08);
+  --color-danger: #EF4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.08);
+  --color-info: #3B82F6;
+  --color-info-bg: rgba(59, 130, 246, 0.06);
+
+  /* ── Neutral Palette (Pure White + Light Gray) ── */
+  --color-bg: #FFFFFF;
+  --color-bg-alt: #F9FAFB;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F3F4F6;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-border-strong: #D1D5DB;
+
+  /* ── Text ── */
+  --color-text: #111827;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
+  --color-text-inverse: #FFFFFF;
+
+  /* ── Sidebar ── */
+  --sidebar-width: 240px;
+  --sidebar-bg: #F9FAFB;
+  --sidebar-bg-hover: rgba(59, 130, 246, 0.06);
+  --sidebar-bg-active: rgba(59, 130, 246, 0.10);
+  --sidebar-text: #4B5563;
+  --sidebar-text-active: #3B82F6;
+  --sidebar-border: #E5E7EB;
+  --sidebar-accent: #3B82F6;
+
+  /* ── Header ── */
+  --header-height: 64px;
+  --header-bg: #FFFFFF;
+  --header-border: #F3F4F6;
+
+  /* ── Typography ── */
+  --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'HarmonyOS Sans SC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, 'JetBrains Mono', Consolas, monospace;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+
+  /* ── Spacing (4px base) ── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* ── Shadows (minimal, flat design) ── */
+  --shadow-xs: none;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 4px 16px rgba(0, 0, 0, 0.05);
+  --shadow-2xl: 0 8px 24px rgba(0, 0, 0, 0.06);
+
+  /* ── Border Radius — uniform ── */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ── */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-Index Scale ── */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* ── Misc ── */
+  --ring-focus: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Dark Mode
+   ═══════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #60A5FA;
+    --color-primary-light: #93C5FD;
+    --color-primary-dark: #3B82F6;
+    --color-primary-bg: rgba(96, 165, 250, 0.08);
+
+    --color-success: #4CBF77;
+    --color-success-bg: rgba(76, 191, 119, 0.10);
+    --color-warning: #F0A84C;
+    --color-warning-bg: rgba(240, 168, 76, 0.10);
+    --color-danger: #F07070;
+    --color-danger-bg: rgba(240, 112, 112, 0.10);
+
+    --color-bg: #151821;
+    --color-bg-alt: #1E2130;
+    --color-surface: #1E2130;
+    --color-surface-hover: #282D3D;
+    --color-border: #2D3148;
+    --color-border-light: #1E2130;
+    --color-border-strong: #3D4260;
+
+    --color-text: #E8EAF0;
+    --color-text-secondary: #A0A5B8;
+    --color-text-muted: #6B7088;
+    --color-text-inverse: #151821;
+
+    --sidebar-bg: #11131E;
+    --header-bg: #151821;
+    --header-border: #1E2130;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ELEMENT PLUS THEME OVERRIDES
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* Primary */
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-light-3: var(--color-primary-light);
+  --el-color-primary-dark-2: var(--color-primary-dark);
+  --el-color-primary-light-9: var(--color-primary-bg);
+
+  /* Semantic */
+  --el-color-success: var(--color-success);
+  --el-color-warning: var(--color-warning);
+  --el-color-danger: var(--color-danger);
+  --el-color-info: var(--color-info);
+
+  /* Surfaces */
+  --el-bg-color: var(--color-bg);
+  --el-bg-color-overlay: var(--color-surface);
+  --el-bg-color-page: var(--color-bg);
+  --el-fill-color-blank: var(--color-surface);
+  --el-fill-color-light: var(--color-bg-alt);
+  --el-fill-color-lighter: var(--color-bg-alt);
+
+  /* Border */
+  --el-border-color: var(--color-border);
+  --el-border-color-light: var(--color-border-light);
+  --el-border-color-lighter: var(--color-border-light);
+  --el-border-color-dark: var(--color-border-strong);
+  --el-border-radius-base: var(--radius-md);
+  --el-border-radius-small: var(--radius-xs);
+  --el-border-radius-round: var(--radius-full);
+
+  /* Text */
+  --el-text-color-primary: var(--color-text);
+  --el-text-color-regular: var(--color-text);
+  --el-text-color-secondary: var(--color-text-secondary);
+  --el-text-color-placeholder: var(--color-text-muted);
+
+  /* Shadows */
+  --el-box-shadow: var(--shadow-md);
+  --el-box-shadow-light: var(--shadow-sm);
+  --el-box-shadow-lighter: var(--shadow-xs);
+  --el-box-shadow-dark: var(--shadow-lg);
+
+  /* Typography */
+  --el-font-size-base: var(--font-size-base);
+  --el-font-family: var(--font-sans);
+
+  /* Menu — only for dark sidebars, not globally */
+  --el-menu-border-color: transparent;
+
+  /* Sizes */
+  --el-component-size-large: 44px;
+  --el-component-size: 36px;
+  --el-component-size-small: 28px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL RESETS
+   ═══════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-3xl); font-weight: 700; }
+h2 { font-size: var(--font-size-2xl); font-weight: 600; }
+h3 { font-size: var(--font-size-xl); font-weight: 600; }
+h4 { font-size: var(--font-size-lg); font-weight: 500; }
+
+p { margin: 0; }
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-primary-bg);
+  color: var(--color-primary-dark);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL CARD STYLE — flat: border-based, no shadow
+   ═══════════════════════════════════════════════════════ */
+.el-card {
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: none !important;
+  transition: border-color var(--transition-fast);
+  overflow: hidden;
+}
+
+.el-card:hover {
+  border-color: var(--color-border-strong) !important;
+  box-shadow: none !important;
+}
+
+.el-card__header {
+  border-bottom: 1px solid var(--color-border) !important;
+  padding: var(--space-4) var(--space-6) !important;
+  background: var(--color-surface);
+}
+
+.el-card__body {
+  padding: var(--space-6) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL TABLE STYLE — flat: no uppercase, thinner headers
+   ═══════════════════════════════════════════════════════ */
+.el-table {
+  --el-table-border-color: var(--color-border);
+  --el-table-header-bg-color: var(--color-bg-alt);
+  --el-table-row-hover-bg-color: var(--color-primary-bg);
+  font-size: var(--font-size-sm);
+}
+
+.el-table th.el-table__cell {
+  background: var(--color-bg-alt);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  font-size: var(--font-size-xs);
+  text-transform: none;
+  letter-spacing: 0;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+.el-table .el-table__row:hover > td.el-table__cell {
+  background: var(--color-primary-bg) !important;
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+  background: var(--color-bg-alt);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL BUTTON ENHANCEMENT — flat: no shadows, no scale
+   ═══════════════════════════════════════════════════════ */
+.el-button {
+  font-weight: 500;
+  letter-spacing: 0;
+  transition: all var(--transition-fast);
+}
+
+.el-button:active {
+  transform: none;
+}
+
+.el-button--primary {
+  box-shadow: none;
+}
+
+.el-button--primary:hover {
+  box-shadow: none;
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL DIALOG STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-dialog {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.el-dialog__header {
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-5) var(--space-6);
+  margin: 0;
+}
+
+.el-dialog__body {
+  padding: var(--space-6);
+}
+
+.el-dialog__footer {
+  border-top: 1px solid var(--color-border-light);
+  padding: var(--space-4) var(--space-6);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL FORM STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-form-item__label {
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.el-input__wrapper {
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.el-input__wrapper:hover {
+  border-color: var(--color-primary);
+}
+
+.el-select .el-input__wrapper {
+  border-radius: var(--radius-sm);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL TAG STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-tag {
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL PAGINATION STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-pagination .el-pager li.is-active {
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL MESSAGE / ALERT STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-alert {
+  border-radius: var(--radius-md);
+}
+
+/* ═══════════════════════════════════════════════════════
+   GLOBAL BREADCRUMB STYLE
+   ═══════════════════════════════════════════════════════ */
+.el-breadcrumb__item {
+  font-size: var(--font-size-sm);
+}
+
+/* ═══════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+   ═══════════════════════════════════════════════════════ */
+#app {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* Page transition */
+.page-fade-enter-active {
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.page-fade-leave-active {
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.page-fade-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 0px;
+    --font-size-base: 0.9375rem;
+  }
+
+  .el-card__body {
+    padding: var(--space-4) !important;
+  }
+
+  .el-card__header {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-2xl: 1.25rem;
+    --font-size-3xl: 1.5rem;
+    --header-height: 52px;
+  }
+
+  .el-card__header {
+    padding: var(--space-3) var(--space-4) !important;
+  }
+
+  .el-card__body {
+    padding: var(--space-3) !important;
+  }
+
+  /* Responsive tables — horizontal scroll on mobile */
+  .el-table {
+    font-size: var(--font-size-xs);
+  }
+
+  /* Smaller dialog on mobile */
+  .el-dialog {
+    width: 92% !important;
+    margin: var(--space-4) auto !important;
+  }
+
+  /* Stack form items vertically */
+  .el-form--inline .el-form-item {
+    display: block;
+    margin-right: 0;
+    margin-bottom: var(--space-3);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   ACCESSIBILITY — Reduced Motion
+   ═══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
